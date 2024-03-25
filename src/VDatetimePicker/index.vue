@@ -301,7 +301,6 @@
           ? moment(dateTime, 'YYYY-MM-DD HH:mm:ss')
           : null
         const dateTimeToSend = dateToSend ? nearestMinAndSec(this.minuteInterval, this.secondInterval, moment(dateToSend), 'YYYY-MM-DD HH:mm:ss').format(this.formatOutput) : null
-        console.log('>>>dateTimeToSend:', dateTimeToSend)
         return dateTimeToSend
       },
       getDateTime () {

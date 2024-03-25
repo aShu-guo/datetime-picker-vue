@@ -268,7 +268,6 @@
       },
       emitValue (payload) {
         const dateTime = this.range ? payload.value : this.getDateTime(payload)
-        console.log('>>>dateTime:', dateTime)
         this.$emit('input', dateTime)
         if (!this.range) {
           this.getTransitionName(dateTime)

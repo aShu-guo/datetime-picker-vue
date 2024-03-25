@@ -46,7 +46,7 @@ jobs:
       - name: Build with VitePress
         run: |
           npm run build:docs
-          touch dist/.nojekyll
+          touch docs/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:

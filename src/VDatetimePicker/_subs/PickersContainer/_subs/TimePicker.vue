@@ -276,7 +276,6 @@
             this.emitValue()
           }
 
-          console.log('>>>disabledSeconds:', [...Array(60)]
             .map((_, i) => i)
             .filter(m => !enabledSeconds.includes(m))
             .map(m => m < 10 ? '0' + m : '' + m))
@@ -457,7 +456,6 @@
           this.minute = item
         } else if (type === 'seconds') {
           this.second = item
-          console.log('>>>item:', item)
         } else if (type === 'apms' && this.apm !== item) {
           const newHour = item === 'pm' || item === 'PM' ? this.hour + 12 : this.hour - 12
           this.hour = newHour
