@@ -276,10 +276,6 @@
             this.emitValue()
           }
 
-            .map((_, i) => i)
-            .filter(m => !enabledSeconds.includes(m))
-            .map(m => m < 10 ? '0' + m : '' + m))
-
           return [...Array(60)]
             .map((_, i) => i)
             .filter(m => !enabledSeconds.includes(m))
