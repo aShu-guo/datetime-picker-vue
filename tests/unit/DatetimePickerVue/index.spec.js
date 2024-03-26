@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils'
 
-import VueCtkDateTimePicker from '../../../src/VDatetimePicker'
-import CustomInput from '@/VDatetimePicker/_subs/CustomInput'
-import PickersContainer from '@/VDatetimePicker/_subs/PickersContainer'
+import VueCtkDateTimePicker from '../../../src/DatetimePickerVue'
+import CustomInput from '@/components/DatetimePickerVue/_subs/CustomInput'
+import PickersContainer from '@/components/DatetimePickerVue/_subs/PickersContainer'
 
 describe('VueCtkDateTimePicker', () => {
   let wrapper

@@ -1,33 +1,35 @@
-<!-- ![v-datetime-picker](./assets/logo_sticky.png) -->
+<!-- ![datetime-picker-vue](./assets/logo_sticky.png) -->
 
-# VDatetimePicker
+> fork from [vue-ctk-date-time-picker](https://github.com/chronotruck/vue-ctk-date-time-picker),Due to the fact that `vue-ctk-date-time-picker` has not been updated for many years, in order to prevent such a good project from being deprecated, we have decided to continue maintaining the project. welcome issue.
+
+# DatetimePickerVue
 
 > A vue component for select dates (range mode available) & time
 
 This documentation is for v2.\*. Find v1 documentation [here](./assets/doc-v1.md)
 
-![v-datetime-picker](./assets/illu-animated.gif)
+![datetime-picker-vue](./assets/illu-animated.gif)
 
 ## Dark mode
 
-![v-datetime-picker](./assets/illu-animated-dark.gif)
+![datetime-picker-vue](./assets/illu-animated-dark.gif)
 
 # Demo
 
-[Enjoy](https://ashu-guo.github.io/v-datetime-picker/)
+[Enjoy](https://ashu-guo.github.io/datetime-picker-vue/)
 
 # Installation
 
 Yarn
 
 ```bash
-yarn add v-datetime-picker
+yarn add datetime-picker-vue
 ```
 
 NPM
 
 ```bash
-npm i --save v-datetime-picker
+npm i --save datetime-picker-vue
 ```
 
 # Usage
@@ -35,14 +37,14 @@ npm i --save v-datetime-picker
 ## ES6 Modules / CommonJS
 
 ```js
-import VDatetimePicker from 'v-datetime-picker';
-import 'v-datetime-picker/dist/v-datetime-picker.css';
+import DatetimePickerVue from 'datetime-picker-vue';
+import 'datetime-picker-vue/dist/datetime-picker-vue.css';
 
-Vue.component('VDatetimePicker', VDatetimePicker);
+Vue.component('DatetimePickerVue', DatetimePickerVue);
 ```
 
 ```html
-<VDatetimePicker v-model="yourValue" />
+<DatetimePickerVue v-model="yourValue" />
 ```
 
 ## UMD
@@ -51,21 +53,21 @@ Vue.component('VDatetimePicker', VDatetimePicker);
 <link
   rel="stylesheet"
   type="text/css"
-  href="${YOUR_PATH}/v-datetime-picker.css"
+  href="${YOUR_PATH}/datetime-picker-vue.css"
 />
 
 <div id="app">
-  <VDatetimePicker v-model="yourValue"></VDatetimePicker>
+  <DatetimePickerVue v-model="yourValue"></DatetimePickerVue>
 </div>
 
 <script src="https://unpkg.com/vue" charset="utf-8"></script>
 <script
-  src="${YOUR_PATH}/v-datetime-picker.umd.min.js"
+  src="${YOUR_PATH}/datetime-picker-vue.umd.min.js"
   charset="utf-8"
 ></script>
 
 <script type="text/javascript">
-  Vue.component('v-datetime-picker', window['v-datetime-picker']);
+  Vue.component('datetime-picker-vue', window['datetime-picker-vue']);
   new Vue({
     el: '#app',
     data() {
@@ -82,13 +84,13 @@ Here is an example of [UMD implementation](https://codepen.io/louismazel/pen/jQW
 ## Use custom element to trigger the component
 
 ```html
-<VDatetimePicker :no-value-to-custom-elem="(true|false)" />
+<DatetimePickerVue :no-value-to-custom-elem="(true|false)" />
   ...
   <input type="text" />
   ... or
   <button type="button">Label</button>
   ...
-</VDatetimePicker>
+</DatetimePickerVue>
 ```
 
 # Props API
@@ -231,7 +233,7 @@ The default value for this object is:
 To override those values, pass a new object with the values you want to override:
 
 ```html
-<v-datetime-picker
+<datetime-picker-vue
   :behaviour="{
     time: {
       nearestIfDisabled: false

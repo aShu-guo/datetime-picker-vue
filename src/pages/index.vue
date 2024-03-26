@@ -3,18 +3,18 @@
     <h1>
       Component:
     </h1>
-    <VDatetimePicker
+    <DatetimePickerVue
       v-model="date"
     />
   </div>
 </template>
 
 <script>
-  import VDatetimePicker from '../VDatetimePicker'
+  import DatetimePickerVue from '../DatetimePickerVue'
 
   export default {
     components: {
-      VDatetimePicker
+      DatetimePickerVue
     },
     data () {
       return {

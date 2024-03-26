@@ -374,7 +374,7 @@
         return this._disabledSeconds.includes(m)
       },
       buildComponent () {
-        if (this.isTwelveFormat && !this.apms) window.console.error(`VDatetimePicker - Format Error : To have the twelve hours format, the format must have "A" or "a" (Ex : ${this.format} a)`)
+        if (this.isTwelveFormat && !this.apms) window.console.error(`DatetimePickerVue - Format Error : To have the twelve hours format, the format must have "A" or "a" (Ex : ${this.format} a)`)
         const tmpHour = parseInt(moment(this.value, this.format).format('HH'))
         const hourToSet = this.isTwelveFormat && (tmpHour === 12 || tmpHour === 0)
           ? tmpHour === 0 ? 12 : 24

@@ -1,6 +1,6 @@
 # Sample workflow for building and deploying a VitePress site to GitHub Pages
 #
-name: Deploy v-datetime-picker site to Pages
+name: Deploy datetime-picker-vue site to Pages
 
 on:
   # Runs on pushes targeting the `main` branch. Change this to `master` if you're
@@ -43,7 +43,7 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Install dependencies
         run: npm ci # or pnpm install / yarn install / bun install
-      - name: Build with VitePress
+      - name: Build docs of site
         run: |
           npm run build:docs
           touch docs/.nojekyll

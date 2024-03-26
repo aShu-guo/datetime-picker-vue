@@ -1,6 +1,6 @@
-![v-datetime-picker](./logo_sticky.png)
+![datetime-picker-vue](./logo_sticky.png)
 
-# v-datetime-picker
+# datetime-picker-vue
 
 > Documention for v1.*
 
@@ -22,7 +22,7 @@
 | disable-time   | Boolean | no     | false |
 | disable-date   | Boolean | no  | false |
 | without-header   | Boolean | no   | false |
-| id  | string | no  | VDatetimePicker |
+| id  | string | no  | DatetimePickerVue |
 | overlay | Boolean | no | true |
 | min-date (6)  | string | no  | - |
 | max-date (6)  | string | no  | - |

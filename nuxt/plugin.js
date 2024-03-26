@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VDatetimePicker from 'v-datetime-picker'
-import 'v-datetime-picker/dist/v-datetime-picker.css'
+import DatetimePickerVue from 'datetime-picker-vue'
+import 'datetime-picker-vue/dist/datetime-picker-vue.css'
 
-Vue.component('VDatetimePicker', VDatetimePicker)
+Vue.component('DatetimePickerVue', DatetimePickerVue)

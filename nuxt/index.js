@@ -1,10 +1,10 @@
 const { resolve } = require('path')
 
-module.exports = function VDatetimePicker () {
+module.exports = function DatetimePickerVue () {
   this.addPlugin({
     ssr: false,
     src: resolve(__dirname, 'plugin.js'),
-    fileName: 'v-datetime-picker.js'
+    fileName: 'datetime-picker-vue.js'
   })
 }
 

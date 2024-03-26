@@ -4,8 +4,8 @@
     :class="{'dark': darkMode}"
   >
     <div
-      id="vDatetimePicker"
-      class="v-datetime-picker"
+      id="datetimePickerVue"
+      class="datetime-picker-vue"
     >
       <header>
         <img
@@ -18,7 +18,7 @@
           src="./assets/logo-dark.png"
           alt="logo-aShu-guo-dark"
         >
-        <h1>VDatetimePicker</h1>
+        <h1>DatetimePickerVue</h1>
         <h3>A VueJs component for select date & time</h3>
         <div
           class="container lm-mt-4"
@@ -26,21 +26,21 @@
           <a
             class="lm-btn lm-btn-dark lm-mr-2"
             target="_blank"
-            href="https://github.com/ashu-guo/v-datetime-picker"
+            href="https://github.com/ashu-guo/datetime-picker-vue"
           >
             Github
           </a>
           <a
             class="lm-btn lm-btn-dark lm-mr-2"
             target="_blank"
-            href="https://github.com/aShu-guo/v-datetime-picker/releases"
+            href="https://github.com/aShu-guo/datetime-picker-vue/releases"
           >
             Changelog
           </a>
           <a
             class="lm-btn lm-btn-danger"
             target="_blank"
-            href="https://www.npmjs.com/package/v-datetime-picker"
+            href="https://www.npmjs.com/package/datetime-picker-vue"
           >
             Npm
           </a>
@@ -65,7 +65,7 @@
             <p>v-model = {{ value2 || 'null' }}</p>
             <br>
             <div class="flex">
-              <VDatetimePicker
+              <DatetimePickerVue
                 v-model="value2"
                 color="purple"
                 :dark="darkMode"
@@ -177,7 +177,7 @@
               </div>
             </div>
             <div class="component">
-              <VDatetimePicker
+              <DatetimePickerVue
                 :id="demo.options.id"
                 v-model="demo.value"
                 :only-date="demo.options.onlyDate"
@@ -233,7 +233,7 @@
                   class="lm-btn"
                   style="margin: 0;"
                 />
-              </VDatetimePicker>
+              </DatetimePickerVue>
             </div>
           </div>
         </div>
@@ -243,13 +243,13 @@
 </template>
 
 <script>
-  import VDatetimePicker from './VDatetimePicker'
-  import CheckboxInput from './CheckboxInput'
+  import DatetimePickerVue from './components/DatetimePickerVue'
+  import CheckboxInput from './components/CheckboxInput'
 
   export default {
     name: 'App',
     components: {
-      VDatetimePicker, CheckboxInput
+      DatetimePickerVue, CheckboxInput
     },
     data () {
       return {
@@ -484,7 +484,7 @@
 
 <style lang="scss">
   @import "./assets/scss/main.scss";
-  html, body, #app, #vueVDatetimePicker {
+  html, body, #app, #datetimePickerVue {
     margin: 0;
     min-height: 100%;
     min-width: 100%;

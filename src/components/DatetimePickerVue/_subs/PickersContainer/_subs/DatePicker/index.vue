@@ -152,12 +152,12 @@
 
 <script>
   import moment from 'moment'
-  import { getWeekDays } from '@/VDatetimePicker/modules/month'
+  import { getWeekDays } from '@/components/DatetimePickerVue/modules/month'
   import RangeShortcuts from './_subs/RangeShortcuts'
   import YearMonthSelector from './_subs/YearMonthSelector'
   import WeekDays from './_subs/WeekDays'
-  import CustomButton from '@/VDatetimePicker/_subs/CustomButton'
-  import KeyboardAccessibility from '@/VDatetimePicker/mixins/keyboard-accessibility'
+  import CustomButton from '@/components/DatetimePickerVue/_subs/CustomButton'
+  import KeyboardAccessibility from '@/components/DatetimePickerVue/mixins/keyboard-accessibility'
 
   export default {
     name: 'DatePicker',
