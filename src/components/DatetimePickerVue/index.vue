@@ -142,9 +142,9 @@
       inline: { type: Boolean, default: false },
       position: { type: String, default: null },
       locale: { type: String, default: getDefaultLocale() },
-      formatted: { type: String, default: 'llll' },
+      // formatted: { type: String, default: 'llll' },
       format: { type: String, default: 'YYYY-MM-DD hh:mm:ss a' },
-      outputFormat: { type: String, default: null },
+      outputFormat: { type: String, default: 'YYYY-MM-DD hh:mm:ss a' },
       minuteInterval: { type: [String, Number], default: 1 },
       secondInterval: { type: [String, Number], default: 1 },
       minDate: { type: String, default: null },
@@ -223,8 +223,8 @@
       dateTime: {
         get () {
           const dateTime = this.range
-            ? { start: this.value && this.value.start ? moment(this.value.start, this.formatOutput).format('YYYY-MM-DD') : null,
-                end: this.value && this.value.end ? moment(this.value.end, this.formatOutput).format('YYYY-MM-DD') : null }
+            ? { start: this.value && this.value.start ? moment(this.value.start, this.format).format('YYYY-MM-DD') : null,
+                end: this.value && this.value.end ? moment(this.value.end, this.format).format('YYYY-MM-DD') : null }
             : this.getDateTime()
           return dateTime
         },
@@ -242,9 +242,6 @@
             })
           }
         }
-      },
-      formatOutput () {
-        return this.outputFormat || this.format
       },
       /**
        * Returns true if the field is disabled
@@ -331,26 +328,26 @@
         const hasStartValues = this.value && this.value.start
         const hasEndValues = this.value && this.value.end
         if (hasStartValues || hasEndValues) {
-          const datesFormatted = hasStartValues ? `${moment(this.value.start, this.formatOutput).set({ hour: 0, minute: 0, second: 0 }).format(this.formatted)}` : '...'
-          return hasEndValues ? `${datesFormatted} - ${moment(this.value.end, this.formatOutput).set({ hour: 23, minute: 59, second: 59 }).format(this.formatted)}` : `${datesFormatted} - ...`
+          const datesFormatted = hasStartValues ? `${moment(this.value.start, this.format).set({ hour: 0, minute: 0, second: 0 }).format(this.outputFormat)}` : '...'
+          return hasEndValues ? `${datesFormatted} - ${moment(this.value.end, this.format).set({ hour: 23, minute: 59, second: 59 }).format(this.outputFormat)}` : `${datesFormatted} - ...`
         } else {
           return null
         }
       },
       getDateFormatted () {
         const date = this.value
-          ? moment(this.value, this.formatOutput).format(this.formatted)
+          ? moment(this.value, this.format).format(this.outputFormat)
           : null
         return date
       },
       getRangeDateToSend (payload) {
         const { start, end } = typeof payload !== 'undefined' ? payload : this.value
         return start || end
-          ? { start: start ? moment(start, 'YYYY-MM-DD').set({ hour: 0, minute: 0, second: 0 }).format(this.formatOutput) : null,
-              end: end ? moment(end, 'YYYY-MM-DD').set({ hour: 23, minute: 59, second: 59 }).format(this.formatOutput) : null,
+          ? { start: start ? moment(start, 'YYYY-MM-DD').set({ hour: 0, minute: 0, second: 0 }).format(this.format) : null,
+              end: end ? moment(end, 'YYYY-MM-DD').set({ hour: 23, minute: 59, second: 59 }).format(this.format) : null,
               shortcut: payload.value }
-          : { start: moment().format(this.formatOutput),
-              end: moment().format(this.formatOutput),
+          : { start: moment().format(this.format),
+              end: moment().format(this.format),
               shortcut: payload.value }
       },
       getDateTimeToSend (value) {
@@ -358,14 +355,14 @@
         const dateToSend = dateTime
           ? moment(dateTime, 'YYYY-MM-DD HH:mm:ss')
           : null
-        const dateTimeToSend = dateToSend ? nearestMinAndSec(this.minuteInterval, this.secondInterval, moment(dateToSend), 'YYYY-MM-DD HH:mm:ss').format(this.formatOutput) : null
+        const dateTimeToSend = dateToSend ? nearestMinAndSec(this.minuteInterval, this.secondInterval, moment(dateToSend), 'YYYY-MM-DD HH:mm:ss').format(this.format) : null
         return dateTimeToSend
       },
       getDateTime () {
         const date = this.value
-          ? moment(this.value, this.formatOutput)
+          ? moment(this.value, this.format)
           : null
-        return date ? nearestMinAndSec(this.minuteInterval, this.secondInterval, date, this.formatOutput).format('YYYY-MM-DD HH:mm:ss') : null
+        return date ? nearestMinAndSec(this.minuteInterval, this.secondInterval, date, this.format).format('YYYY-MM-DD HH:mm:ss') : null
       },
       /**
        * Closes the datepicker

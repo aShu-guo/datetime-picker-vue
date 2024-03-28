@@ -87,7 +87,7 @@
   "main": "dist/datetime-picker-vue.umd.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ashu-guo/datetime-picker-vue.git"
+    "url": "git+https://github.com/ashu-guo/datetime-picker-vue"
   },
   "types": "dist/index.d.ts"
 }

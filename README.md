@@ -99,7 +99,6 @@ Here is an example of [UMD implementation](https://codepen.io/louismazel/pen/jQW
 |-----------------------------| ----------------- | -------- |--------------------------|
 | v-model                     | String            | yes      | -                        |
 | format                      | String            | no       | 'YYYY-MM-DD hh:mm a'     |
-| formatted                   | String            | no       | 'llll' (momentjs format) |
 | label                       | String            | no       | Select date & time       |
 | hint (1)                    | String            | no       | -                        |
 | error (2)                   | Boolean           | no       | false                    |
@@ -151,7 +150,7 @@ Here is an example of [UMD implementation](https://codepen.io/louismazel/pen/jQW
 
 (5) locale : Default value is the locale of the browser - Ex : Set `locale="fr"` to force to French language
 
-(6) no-value-to-custom-elem : No value will set to your elem (you can get the formatted value with @formatted-value event)
+(6) no-value-to-custom-elem : No value will set to your elem
 
 (7) min-date && max-date should be in the same format as property format specified. If format not set - it is set to 'YYYY-MM-DD hh:mm a' by default
 
@@ -251,7 +250,6 @@ To override those values, pass a new object with the values you want to override
 | Event           | Return                                            |
 | --------------- | ------------------------------------------------- |
 | input           | value (formatted with 'format' props)             |
-| formatted-value | value (formatted with 'formatted' props)          |
 | is-shown        | Component is shown                                |
 | is-hidden       | Component is hidden                               |
 | validate        | Click on validate button (so component is closed) |
