@@ -79,12 +79,10 @@ Vue.component('DatetimePickerVue', DatetimePickerVue);
 </script>
 ```
 
-Here is an example of [UMD implementation](https://codepen.io/louismazel/pen/jQWNzQ).
-
 ## Use custom element to trigger the component
 
 ```html
-<DatetimePickerVue :no-value-to-custom-elem="(true|false)" />
+<DatetimePickerVue :no-value-to-custom-elem="(true|false)" >
   ...
   <input type="text" />
   ... or
@@ -95,50 +93,50 @@ Here is an example of [UMD implementation](https://codepen.io/louismazel/pen/jQW
 
 # Props API
 
-| Props                       | Type              | Required | Default                  |
-|-----------------------------| ----------------- | -------- |--------------------------|
-| v-model                     | String            | yes      | -                        |
-| format                      | String            | no       | 'YYYY-MM-DD hh:mm a'     |
-| label                       | String            | no       | Select date & time       |
-| hint (1)                    | String            | no       | -                        |
-| error (2)                   | Boolean           | no       | false                    |
-| color (3)                   | String (hex)      | no       | dodgerblue               |
-| button-color (4)            | String (hex)      | no       | #00C853                  |
-| position                    | String            | no       | null                     |
-| locale (5)                  | String            | no       | Browser Locale           |
-| persistent                  | Boolean           | no       | false                    |
-| minute-interval             | Integer           | no       | 1                        |
-| second-interval             | Integer           | no       | 1                        |
-| output-format               | String            | no       | null                     |
-| only-time                   | Boolean           | no       | false                    |
-| only-date                   | Boolean           | no       | false                    |
-| no-label                    | Boolean           | no       | false                    |
-| no-header                   | Boolean           | no       | false                    |
-| no-value-to-custom-elem (6) | Boolean           | no       | false                    |
-| min-date (7)                | String            | no       | -                        |
-| max-date (7)                | String            | no       | -                        |
-| no-weekends-days            | Boolean           | no       | false                    |
-| auto-close                  | Boolean           | no       | false                    |
-| inline                      | Boolean           | no       | false                    |
-| overlay                     | Boolean           | no       | false                    |
-| range                       | Boolean           | no       | false                    |
-| dark                        | Boolean           | no       | false                    |
-| no-shortcuts                | Boolean           | no       | false                    |
-| no-button                   | Boolean           | no       | false                    |
-| input-size                  | String (sm or lg) | no       | null                     |
-| button-now-translation      | String            | no       | 'Now'                    |
-| no-button-now               | Boolean           | no       | false                    |
-| first-day-of-week           | Int (0 to 7)      | no       | -                        |
-| disabled-dates (8)          | Array`<string>`   | no       | []                       |
-| disabled-hours (9)          | Array`<string>`   | no       | -                        |
-| shortcut                    | String            | no       | -                        |
-| custom-shortcuts (10)       | Array`<object>`   | no       | -                        |
-| disabled-weekly (11)        | Array`<integer>`  | no       | []                       |
-| no-keyboard (12)            | Boolean           | no       | false                    |
-| right (13)                  | Boolean           | no       | false                    |
-| noClearButton               | Boolean           | no       | false                    |
+| Props                       | Type              | Required | Default                     |
+|-----------------------------| ----------------- | -------- |-----------------------------|
+| v-model                     | String            | yes      | -                           |
+| format                      | String            | no       | 'YYYY-MM-DD hh:mm a'        |
+| label                       | String            | no       | Select date & time          |
+| hint (1)                    | String            | no       | -                           |
+| error (2)                   | Boolean           | no       | false                       |
+| color (3)                   | String (hex)      | no       | dodgerblue                  |
+| button-color (4)            | String (hex)      | no       | #00C853                     |
+| position                    | String            | no       | null                        |
+| locale (5)                  | String            | no       | [Browser Locale](https://github.com/moment/moment/tree/develop/locale)          |
+| persistent                  | Boolean           | no       | false                       |
+| minute-interval             | Integer           | no       | 1                           |
+| second-interval             | Integer           | no       | 1                           |
+| output-format               | String            | no       | null                        |
+| only-time                   | Boolean           | no       | false                       |
+| only-date                   | Boolean           | no       | false                       |
+| no-label                    | Boolean           | no       | false                       |
+| no-header                   | Boolean           | no       | false                       |
+| no-value-to-custom-elem (6) | Boolean           | no       | false                       |
+| min-date (7)                | String            | no       | -                           |
+| max-date (7)                | String            | no       | -                           |
+| no-weekends-days            | Boolean           | no       | false                       |
+| auto-close                  | Boolean           | no       | false                       |
+| inline                      | Boolean           | no       | false                       |
+| overlay                     | Boolean           | no       | false                       |
+| range                       | Boolean           | no       | false                       |
+| dark                        | Boolean           | no       | false                       |
+| no-shortcuts                | Boolean           | no       | false                       |
+| no-button                   | Boolean           | no       | false                       |
+| input-size                  | String (sm or lg) | no       | null                        |
+| button-now-translation      | String            | no       | 'Now'                       |
+| no-button-now               | Boolean           | no       | false                       |
+| first-day-of-week           | Int (0 to 7)      | no       | -                           |
+| disabled-dates (8)          | Array`<string>`   | no       | []                          |
+| disabled-hours (9)          | Array`<string>`   | no       | -                           |
+| shortcut                    | String            | no       | -                           |
+| custom-shortcuts (10)       | Array`<object>`   | no       | -                           |
+| disabled-weekly (11)        | Array`<integer>`  | no       | []                          |
+| no-keyboard (12)            | Boolean           | no       | false                       |
+| right (13)                  | Boolean           | no       | false                       |
+| noClearButton               | Boolean           | no       | false                       |
 | behaviour                   | Object            | no       | [See behaviour](#Behaviour) |
-| id (14)                     | String            | no       | undefined                |
+| id (14)                     | String            | no       | undefined                   |
 
 (1) hint : Is a text that replaces the label/placeholder (Ex : Error designation)
 
@@ -148,7 +146,7 @@ Here is an example of [UMD implementation](https://codepen.io/louismazel/pen/jQW
 
 (4) button-color: Replace color for the buttons on bottom (validation & 'now')
 
-(5) locale : Default value is the locale of the browser - Ex : Set `locale="fr"` to force to French language
+(5) locale : Default value is the locale of the browser - Ex : Set `locale="zh_cn"` to force to Chinese language
 
 (6) no-value-to-custom-elem : No value will set to your elem
 
@@ -176,7 +174,7 @@ Here is an example of [UMD implementation](https://codepen.io/louismazel/pen/jQW
 Shortcut types allowed are : `['day', '-day', 'isoWeek', '-isoWeek', 'quarter', 'month', '-month', 'year', '-year', 'week', '-week']`
 For each shortcut, a `key`, `label` and `value` must be specified. The `key` is a unique key for that specific shortcut.
 Additional values can be passed as a `callback` function that will be called whenever the user clicks on the shortcut. The callback receives an object as first argument with the `start` and `end` values, with the `shortcut` object itself.
-You can use this feature for translate existings shortcuts.
+You can use this feature for translate existing shortcuts.
 If the **value of shortcut is a number** (Integer), this number correspond to number of day (for 5 --> Last 5 days).
 
 If the **value of shortcut is a function**, we'll use it to generate the `start` and `end` values. This function should return an object with the start & end values. Both values **must be a moment object**. The function is called when the user clicks on the shortcut button.
@@ -192,7 +190,7 @@ If the **value of shortcut is a function**, we'll use it to generate the `start`
         end: moment().add(2, 'days')
       }
     },
-    callback: ({ start, end }) => {
+    callback: ({ start, end }) => {
       console.log('My shortcut was clicked with values: ', start, end)
     }
   },
@@ -211,13 +209,13 @@ With the `shortcut` property, you can specify a shortcut that's selected by defa
 
 (13) right : add this attribute to align the picker on right
 
-(14) id : it assign id such as 'passedstring-input' to input help diffrentiate between two date-time-picker on same component.
+(14) id : it assigns id such as 'passedstring-input' to input help differentiate between two date-time-picker on same component.
 
-> Any additionnal attribute passed to the component will be automatically be binded to the input component. (eg. if you passes a `type` attribute, the `<input>` will receive it).
+> Any additional attribute passed to the component will be automatically be bound to the input component. (eg. if you pass a `type` attribute, the `<input>` will receive it).
 
 ## Behaviour
 
-In order to avoid having too much properties in the component, We're adding a `behaviour` property that is an object including some annex behaviour values.
+In order to avoid having too many properties in the component, We're adding a `behaviour` property that is an object including some annex behaviour values.
 
 The default value for this object is:
 
@@ -272,7 +270,7 @@ To override those values, pass a new object with the values you want to override
 
 - Double Calendar on RangeDatePicker (issue : #33)
 - Inputs Text to choose values (issue #30)
-- TimePicker seconds support (issue : #79)
+- TimePicker seconds support (already release)
 
 # Contribute
 
@@ -285,18 +283,12 @@ Ensure you have Node and npm in your machine. Minimal config is:
 - node >= 6.0
 - npm >= 3.0
 
-> This project is built with `node@10.x`.
+> This project is built with `node@12.x`.
 
 Install the development dependencies by running:
 
 ```bash
 npm install
-```
-
-or
-
-```bash
-npm ci # Recommanded if you have node > 10.x
 ```
 
 Once your dependencies are installed, start the development server with:
