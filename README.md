@@ -245,13 +245,13 @@ To override those values, pass a new object with the values you want to override
 
 # Events API
 
-| Event           | Return                                            |
-| --------------- | ------------------------------------------------- |
-| input           | value (formatted with 'format' props)             |
-| is-shown        | Component is shown                                |
-| is-hidden       | Component is hidden                               |
-| validate        | Click on validate button (so component is closed) |
-| destroy         | Component is destroy                              |
+| Event     | Return                                      |
+|-----------|---------------------------------------------|
+| input     | value (formatted with 'format' props)       |
+| is-shown  | Component is shown                          |
+| is-hidden | Component is hidden                         |
+| ok        | Click on ok button (so component is closed) |
+| destroy   | Component is destroy                        |
 
 # Keyboard Accessible
 

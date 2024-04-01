@@ -1,6 +1,6 @@
 {
   "name": "datetime-picker-vue",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A vue component for select date & time (by aShu-guo)",
   "author": "aShu-guo <guochengli97@163.com>",
   "scripts": {

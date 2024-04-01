@@ -57,7 +57,7 @@
       :format="format"
       :no-weekends-days="noWeekendsDays"
       :disabled-weekly="disabledWeekly"
-      :has-button-validate="hasButtonValidate"
+      :has-button-ok="hasButtonOk"
       :has-no-button="hasNoButton"
       :range="range"
       :disabled-dates="disabledDates"
@@ -72,22 +72,22 @@
       :no-keyboard="noKeyboard"
       :right="right"
       :behaviour="_behaviour"
-      @validate="validate"
+      @ok="onOk"
       @close="closePicker"
     />
   </div>
 </template>
 
 <script>
-  import moment from 'moment'
-  import vClickOutside from 'v-click-outside'
+import moment from 'moment'
+import vClickOutside from 'v-click-outside'
 
-  import CustomInput from './_subs/CustomInput'
-  import PickersContainer from './_subs/PickersContainer'
+import CustomInput from './_subs/CustomInput'
+import PickersContainer from './_subs/PickersContainer'
 
-  import { getDefaultLocale } from '@/components/DatetimePickerVue/utils'
+import { getDefaultLocale } from '@/components/DatetimePickerVue/utils'
 
-  const updateMomentLocale = (locale, firstDayOfWeek) => {
+const updateMomentLocale = (locale, firstDayOfWeek) => {
     moment.locale(locale)
     if (firstDayOfWeek) {
       const firstDayNumber = Number.isInteger(firstDayOfWeek) && firstDayOfWeek === 0
@@ -142,7 +142,6 @@
       inline: { type: Boolean, default: false },
       position: { type: String, default: null },
       locale: { type: String, default: getDefaultLocale() },
-      // formatted: { type: String, default: 'llll' },
       format: { type: String, default: 'YYYY-MM-DD hh:mm:ss a' },
       outputFormat: { type: String, default: 'YYYY-MM-DD hh:mm:ss a' },
       minuteInterval: { type: [String, Number], default: 1 },
@@ -191,7 +190,9 @@
     data () {
       return {
         pickerOpen: false,
-        pickerPosition: this.position
+        pickerPosition: this.position,
+        innerValue: '',
+        isConfirm: false
       }
     },
     computed: {
@@ -201,18 +202,16 @@
       hasNoButton () {
         return this.noButton
       },
-      hasButtonValidate () {
+      hasButtonOk () {
         return !this.inline && !this.autoClose
       },
       hasOnlyDate () {
         return this.onlyDate || this.range
       },
       dateFormatted () {
-        const dateFormatted = this.range
+        return this.range
           ? this.getRangeDatesFormatted(this.locale)
           : this.getDateFormatted(this.locale)
-        this.$emit('formatted-value', dateFormatted)
-        return dateFormatted
       },
       hasCustomElem () {
         return this.$slots.default
@@ -222,11 +221,12 @@
       },
       dateTime: {
         get () {
-          const dateTime = this.range
-            ? { start: this.value && this.value.start ? moment(this.value.start, this.format).format('YYYY-MM-DD') : null,
-                end: this.value && this.value.end ? moment(this.value.end, this.format).format('YYYY-MM-DD') : null }
+          return this.range
+            ? {
+              start: this.value && this.value.start ? moment(this.value.start, this.format).format('YYYY-MM-DD') : null,
+              end: this.value && this.value.end ? moment(this.value.end, this.format).format('YYYY-MM-DD') : null
+            }
             : this.getDateTime()
-          return dateTime
         },
         set (value) {
           if (this.autoClose && this.range && (value.end && value.start)) {
@@ -328,8 +328,16 @@
         const hasStartValues = this.value && this.value.start
         const hasEndValues = this.value && this.value.end
         if (hasStartValues || hasEndValues) {
-          const datesFormatted = hasStartValues ? `${moment(this.value.start, this.format).set({ hour: 0, minute: 0, second: 0 }).format(this.outputFormat)}` : '...'
-          return hasEndValues ? `${datesFormatted} - ${moment(this.value.end, this.format).set({ hour: 23, minute: 59, second: 59 }).format(this.outputFormat)}` : `${datesFormatted} - ...`
+          const datesFormatted = hasStartValues ? `${moment(this.value.start, this.format).set({
+            hour: 0,
+            minute: 0,
+            second: 0
+          }).format(this.outputFormat)}` : '...'
+          return hasEndValues ? `${datesFormatted} - ${moment(this.value.end, this.format).set({
+            hour: 23,
+            minute: 59,
+            second: 59
+          }).format(this.outputFormat)}` : `${datesFormatted} - ...`
         } else {
           return null
         }
@@ -343,20 +351,23 @@
       getRangeDateToSend (payload) {
         const { start, end } = typeof payload !== 'undefined' ? payload : this.value
         return start || end
-          ? { start: start ? moment(start, 'YYYY-MM-DD').set({ hour: 0, minute: 0, second: 0 }).format(this.format) : null,
-              end: end ? moment(end, 'YYYY-MM-DD').set({ hour: 23, minute: 59, second: 59 }).format(this.format) : null,
-              shortcut: payload.value }
-          : { start: moment().format(this.format),
-              end: moment().format(this.format),
-              shortcut: payload.value }
+          ? {
+            start: start ? moment(start, 'YYYY-MM-DD').set({ hour: 0, minute: 0, second: 0 }).format(this.format) : null,
+            end: end ? moment(end, 'YYYY-MM-DD').set({ hour: 23, minute: 59, second: 59 }).format(this.format) : null,
+            shortcut: payload.value
+          }
+          : {
+            start: moment().format(this.format),
+            end: moment().format(this.format),
+            shortcut: payload.value
+          }
       },
       getDateTimeToSend (value) {
         const dateTime = typeof value !== 'undefined' ? value : this.value
         const dateToSend = dateTime
           ? moment(dateTime, 'YYYY-MM-DD HH:mm:ss')
           : null
-        const dateTimeToSend = dateToSend ? nearestMinAndSec(this.minuteInterval, this.secondInterval, moment(dateToSend), 'YYYY-MM-DD HH:mm:ss').format(this.format) : null
-        return dateTimeToSend
+        return dateToSend ? nearestMinAndSec(this.minuteInterval, this.secondInterval, moment(dateToSend), 'YYYY-MM-DD HH:mm:ss').format(this.format) : null
       },
       getDateTime () {
         const date = this.value
@@ -371,6 +382,7 @@
       closePicker () {
         if (this.pickerOpen) {
           this.$emit('is-hidden')
+          this.$emit('input', this.isConfirm ? this.dateTime : this.innerValue)
           this.pickerOpen = false
           this.setBodyOverflow(false)
         }
@@ -383,6 +395,11 @@
 
         if (isOpen) {
           this.$emit('is-shown')
+          /**
+           * Cache old value
+           */
+          this.isConfirm = false
+          this.innerValue = this.dateTime
         }
 
         if (this.pickerOpen && !this.position) {
@@ -417,8 +434,9 @@
           }
         }
       },
-      validate () {
-        this.$emit('validate')
+      onOk () {
+        this.isConfirm = true
+        this.$emit('ok', this.dateTime)
         this.closePicker()
       }
     }
@@ -426,31 +444,33 @@
 </script>
 
 <style lang="scss">
-  @import "./assets/main.scss";
-  .date-time-picker {
-    width: 100%;
-    margin: 0 auto;
-    text-align: left;
-    font-size: 14px;
-    border-radius: 4px;
-    position: relative;
-    .time-picker-overlay {
-      z-index: 2;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-    }
-  }
+@import "./assets/main.scss";
 
-  @media screen and (max-width: 415px) {
-    .time-picker-overlay {
-      display: none;
-    }
-    .date-time-picker:not(.inline) {
-      position: inherit !important;
-    }
+.date-time-picker {
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 4px;
+  position: relative;
+
+  .time-picker-overlay {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
   }
+}
+
+@media screen and (max-width: 415px) {
+  .time-picker-overlay {
+    display: none;
+  }
+  .date-time-picker:not(.inline) {
+    position: inherit !important;
+  }
+}
 </style>

@@ -104,7 +104,7 @@ describe('VueCtkDateTimePicker/PickersContainer/ButtonValidate', () => {
     })
 
     describe('right margin', () => {
-      it('should have the class if there is a validate button', () => {
+      it('should have the class if there is a ok button', () => {
         wrapper.setProps({
           noButtonNow: false,
           range: false,
@@ -115,7 +115,7 @@ describe('VueCtkDateTimePicker/PickersContainer/ButtonValidate', () => {
         expect(button.classes()).toContain('right-margin')
       })
 
-      it('should not have the class if validate button not present', () => {
+      it('should not have the class if ok button not present', () => {
         wrapper.setProps({
           noButtonNow: false,
           range: false,
@@ -128,12 +128,12 @@ describe('VueCtkDateTimePicker/PickersContainer/ButtonValidate', () => {
     })
   })
 
-  describe('validate button', () => {
+  describe('ok button', () => {
     it('should be defined if the "hasButtonValidate" is true', () => {
       wrapper.setProps({
         hasButtonValidate: true
       })
-      const button = wrapper.find('.validate')
+      const button = wrapper.find('.ok')
       expect(button.exists()).toBeTruthy()
       expect(button.is('button')).toBeTruthy()
       expect(button.attributes().tabindex).toEqual('-1')
@@ -142,26 +142,26 @@ describe('VueCtkDateTimePicker/PickersContainer/ButtonValidate', () => {
       classes.forEach(C => expect(button.classes()).toContain(C))
     })
 
-    it('should emit a validate event on click', () => {
+    it('should emit a ok event on click', () => {
       wrapper.setProps({
         hasButtonValidate: true
       })
-      const button = wrapper.find('.validate')
+      const button = wrapper.find('.ok')
       button.trigger('click')
-      expect(wrapper.emitted().validate).toBeTruthy()
+      expect(wrapper.emitted().ok).toBeTruthy()
     })
 
     it('should be undefined if the "hasButtonValidate" is false', () => {
       wrapper.setProps({
         hasButtonValidate: false
       })
-      const button = wrapper.find('.validate')
+      const button = wrapper.find('.ok')
       expect(button.exists()).toBeFalsy()
     })
 
     /**
      * TODO: Test the button content.
-     * See if we don't want to change the validate content value.
+     * See if we don't want to change the ok content value.
      */
   })
 

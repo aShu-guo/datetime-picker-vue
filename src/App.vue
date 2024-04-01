@@ -411,25 +411,26 @@
               minDate: '2019-03-03 8:10 pm',
               maxDate: '2019-03-24 9:14 am'
             }
-          }
-          /* {
+          },
+          {
             id: '9',
             title: 'Enabled/Disabled dates Picker',
             description: '',
             editOption: false,
             initial: {
-              disabledDates: ['2021-02-22'],
+              disabledDates: ['2021-02-22', '2024-03-29 17:37:50'],
               enabledDates: ['2021-02-21', '2021-02-22', '2021-02-23']
             },
             value: '2021-02-22',
             options: {
               id: 'EnabledDisabledDatesPicker',
-              disabledDates: ['2021-02-22'],
-              enabledDates: ['2021-02-21', '2021-02-22', '2021-02-23'],
-              inline: true,
-              format: 'YYYY-MM-DD HH:mm'
+              disabledDates: ['2021-02-22', '2024-03-29 17:37:50'],
+              // enabledDates: ['2021-02-21', '2021-02-22', '2021-02-23'],
+              // inline: true,
+              format: 'YYYY-MM-DD HH:mm',
+              outputFormat: 'YYYY-MM-DD HH:mm'
             }
-          } */
+          }
         ],
         value: '06-01-2014 05:00',
         value2: null,
@@ -483,42 +484,52 @@
 </script>
 
 <style lang="scss">
-  @import "./assets/scss/main.scss";
-  html, body, #app, #datetimePickerVue {
-    margin: 0;
-    min-height: 100%;
-    min-width: 100%;
-    font-size: 14px;
-  }
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    &.dark {
-      background-color: darken(#424242, 20%);
-      header {
-        color: rgba(255, 255, 255, 0.70);
-      }
+@import "./assets/scss/main.scss";
+
+html, body, #app, #datetimePickerVue {
+  margin: 0;
+  min-height: 100%;
+  min-width: 100%;
+  font-size: 14px;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.dark {
+    background-color: darken(#424242, 20%);
+
+    header {
+      color: rgba(255, 255, 255, 0.70);
     }
   }
-  header {
-    text-align: center;
-  }
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  img {
-    height: 140px;
-  }
-  h3, h4, h1, p {
-    margin: 0;
-  }
-  h3 {
-    margin-bottom: 10px;
-  }
-  hr {
-    border-top: 1px solid #ebebeb;
-    border-bottom: 0;
-    margin: 20px 0;
-  }
+}
+
+header {
+  text-align: center;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img {
+  height: 140px;
+}
+
+h3, h4, h1, p {
+  margin: 0;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+hr {
+  border-top: 1px solid #ebebeb;
+  border-bottom: 0;
+  margin: 20px 0;
+}
 </style>
