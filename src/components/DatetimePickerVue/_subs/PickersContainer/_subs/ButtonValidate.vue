@@ -34,7 +34,15 @@
         class="datepicker-button-effect"
         :style="[bgStyle]"
       />
+      <span
+        v-if="buttonConfirmTranslation"
+        class="datepicker-button-content"
+        :style="[colorStyle]"
+      >
+        {{ buttonConfirmTranslation }}
+      </span>
       <svg
+        v-else
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -63,7 +71,7 @@
       dark: { type: Boolean, default: null },
       buttonColor: { type: String, default: null },
       buttonNowTranslation: { type: String, default: null },
-      buttonConfirm: { type: String, default: null },
+      buttonConfirmTranslation: { type: String, default: null },
       disabledNow: { type: Boolean, default: false },
       onlyTime: { type: Boolean, default: null },
       noButtonNow: { type: Boolean, default: null },
@@ -170,6 +178,9 @@
       }
       &.ok {
         border: 1px solid #eaeaea;
+        .datepicker-button-content {
+          color: dodgerblue;
+        }
       }
     }
     &.is-dark, &.is-dark .datepicker-button {

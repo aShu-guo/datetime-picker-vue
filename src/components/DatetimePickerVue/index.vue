@@ -65,6 +65,7 @@
       :enabled-dates="enabledDates"
       :no-shortcuts="noShortcuts"
       :button-now-translation="buttonNowTranslation"
+      :button-confirm-translation="buttonConfirmTranslation"
       :no-button-now="noButtonNow"
       :first-day-of-week="firstDayOfWeek"
       :shortcut="shortcut"
@@ -164,6 +165,7 @@ const updateMomentLocale = (locale, firstDayOfWeek) => {
       persistent: { type: Boolean, default: false },
       inputSize: { type: String, default: null },
       buttonNowTranslation: { type: String, default: null },
+      buttonConfirmTranslation: { type: String, default: null },
       noButtonNow: { type: Boolean, default: false },
       noButtonValidate: { type: Boolean, default: false },
       firstDayOfWeek: { type: Number, default: null },

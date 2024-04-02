@@ -184,7 +184,6 @@
                 :only-time="demo.options.onlyTime"
                 :range="demo.options.range"
                 :format="demo.options.format"
-                :formatted="demo.options.formatted"
                 :output-format="demo.options.outputFormat"
                 :inline="demo.options.inline"
                 :color="demo.options.color"
@@ -212,6 +211,7 @@
                 :no-shortcuts="demo.options.noShortcuts"
                 :no-button="demo.options.noButton"
                 :button-now-translation="demo.options.buttonNowTranslation"
+                :button-confirm-translation="demo.options.buttonConfirmTranslation"
                 :no-button-now="demo.options.noButtonNow"
                 :locale="demo.options.locale"
                 :input-size="demo.options.inputSize"
@@ -260,8 +260,8 @@
           'noKeyboard', 'right', 'noClearButton', 'noLabel'
         ],
         stringOptions: [
-          'id', 'label', 'hint', 'color', 'buttonColor', 'position', 'format', 'formatted', 'outputFormat',
-          'minDate', 'maxDate', 'inputSize', 'buttonNowTranslation', 'disabledWeekly'
+          'id', 'label', 'hint', 'color', 'buttonColor', 'position', 'format', 'outputFormat',
+          'minDate', 'maxDate', 'inputSize', 'buttonNowTranslation', 'buttonConfirmTranslation', 'disabledWeekly'
         ],
         optionsNotEditable: [
           'customShortcuts', 'disabledDates', 'disabledHours', 'locale'
@@ -281,7 +281,9 @@
               format: 'YYYY-MM-DD HH:mm:ss',
               id: 'DateTimePicker',
               minDate: '2018-04-05 12:20:30',
-              maxDate: '2018-04-24 8:13:20'
+              maxDate: '2018-04-24 8:13:20',
+              buttonConfirmTranslation: '确定',
+              buttonNowTranslation: '现在'
             }
           },
           {
@@ -302,7 +304,6 @@
                 type: 'button'
               },
               range: true,
-              formatted: 'll',
               format: 'YYYY-MM-DD',
               color: 'purple',
               label: 'Select date range',
@@ -312,7 +313,7 @@
           {
             id: '3',
             title: 'Date Picker',
-            description: 'Date selector - right position - noLabel true - With large input (input-size="lg") - format: "MM-DD-YYYY" - formatted: "ll"',
+            description: 'Date selector - right position - noLabel true - With large input (input-size="lg") - format: "MM-DD-YYYY" ',
             editOption: false,
             initial: '14-01-2019',
             value: '14-01-2019',
@@ -324,7 +325,6 @@
               buttonNowTranslation: 'Maintenant',
               id: 'DatePicker',
               format: 'DD-MM-YYYY',
-              formatted: 'll',
               right: true,
               noLabel: true
             }
@@ -338,7 +338,6 @@
             value: '11:26 am',
             options: {
               format: 'hh:mm a',
-              formatted: 'hh:mm a',
               onlyTime: true,
               color: 'firebrick',
               minuteInterval: '10',
@@ -364,7 +363,6 @@
             options: {
               inline: true,
               format: 'YYYY-MM-DD',
-              formatted: 'll',
               range: true,
               id: 'InlinePicker',
               disabledWeekly: [0, 4, 6],

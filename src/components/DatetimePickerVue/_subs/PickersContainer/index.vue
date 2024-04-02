@@ -83,6 +83,7 @@
           :dark="dark"
           :button-color="buttonColor"
           :button-now-translation="buttonNowTranslation"
+          :button-confirm-translation="buttonConfirmTranslation"
           :only-time="onlyTime"
           :no-button-now="noButtonNow"
           :range="range"
@@ -138,6 +139,7 @@
       noShortcuts: { type: Boolean, default: null },
       buttonColor: { type: String, default: null },
       buttonNowTranslation: { type: String, default: null },
+      buttonConfirmTranslation: { type: String, default: null },
       noButtonNow: { type: Boolean, default: false },
       firstDayOfWeek: { type: Number, default: null },
       shortcut: { type: String, default: null },
