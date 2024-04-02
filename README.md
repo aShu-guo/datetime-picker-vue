@@ -1,12 +1,10 @@
 <!-- ![datetime-picker-vue](./assets/logo_sticky.png) -->
 
-> fork from [vue-ctk-date-time-picker](https://github.com/chronotruck/vue-ctk-date-time-picker),Due to the fact that `vue-ctk-date-time-picker` has not been updated for many years, in order to prevent such a good project from being deprecated, we have decided to continue maintaining the project. welcome issue.
+> fork from [vue-ctk-date-time-picker](https://github.com/chronotruck/vue-ctk-date-time-picker), Due to the fact that `vue-ctk-date-time-picker` has not been updated for many years, in order to prevent such a good project from being deprecated, we have decided to continue maintaining the project. welcome issue.
 
 # DatetimePickerVue
 
 > A vue component for select dates (range mode available) & time
-
-This documentation is for v2.\*. Find v1 documentation [here](./assets/doc-v1.md)
 
 ![datetime-picker-vue](./assets/illu-animated.gif)
 
@@ -93,50 +91,51 @@ Vue.component('DatetimePickerVue', DatetimePickerVue);
 
 # Props API
 
-| Props                       | Type              | Required | Default                     |
-|-----------------------------| ----------------- | -------- |-----------------------------|
-| v-model                     | String            | yes      | -                           |
-| format                      | String            | no       | 'YYYY-MM-DD hh:mm a'        |
-| label                       | String            | no       | Select date & time          |
-| hint (1)                    | String            | no       | -                           |
-| error (2)                   | Boolean           | no       | false                       |
-| color (3)                   | String (hex)      | no       | dodgerblue                  |
-| button-color (4)            | String (hex)      | no       | #00C853                     |
-| position                    | String            | no       | null                        |
-| locale (5)                  | String            | no       | [Browser Locale](https://github.com/moment/moment/tree/develop/locale)          |
-| persistent                  | Boolean           | no       | false                       |
-| minute-interval             | Integer           | no       | 1                           |
-| second-interval             | Integer           | no       | 1                           |
-| output-format               | String            | no       | null                        |
-| only-time                   | Boolean           | no       | false                       |
-| only-date                   | Boolean           | no       | false                       |
-| no-label                    | Boolean           | no       | false                       |
-| no-header                   | Boolean           | no       | false                       |
-| no-value-to-custom-elem (6) | Boolean           | no       | false                       |
-| min-date (7)                | String            | no       | -                           |
-| max-date (7)                | String            | no       | -                           |
-| no-weekends-days            | Boolean           | no       | false                       |
-| auto-close                  | Boolean           | no       | false                       |
-| inline                      | Boolean           | no       | false                       |
-| overlay                     | Boolean           | no       | false                       |
-| range                       | Boolean           | no       | false                       |
-| dark                        | Boolean           | no       | false                       |
-| no-shortcuts                | Boolean           | no       | false                       |
-| no-button                   | Boolean           | no       | false                       |
-| input-size                  | String (sm or lg) | no       | null                        |
-| button-now-translation      | String            | no       | 'Now'                       |
-| no-button-now               | Boolean           | no       | false                       |
-| first-day-of-week           | Int (0 to 7)      | no       | -                           |
-| disabled-dates (8)          | Array`<string>`   | no       | []                          |
-| disabled-hours (9)          | Array`<string>`   | no       | -                           |
-| shortcut                    | String            | no       | -                           |
-| custom-shortcuts (10)       | Array`<object>`   | no       | -                           |
-| disabled-weekly (11)        | Array`<integer>`  | no       | []                          |
-| no-keyboard (12)            | Boolean           | no       | false                       |
-| right (13)                  | Boolean           | no       | false                       |
-| noClearButton               | Boolean           | no       | false                       |
-| behaviour                   | Object            | no       | [See behaviour](#Behaviour) |
-| id (14)                     | String            | no       | undefined                   |
+| Props                       | Type              | Required | Default                                                               |
+|-----------------------------| ----------------- | -------- |-----------------------------------------------------------------------|
+| v-model                     | String            | yes      | -                                                                     |
+| format                      | String            | no       | 'YYYY-MM-DD hh:mm a'                                                  |
+| label                       | String            | no       | Select date & time                                                    |
+| hint (1)                    | String            | no       | -                                                                     |
+| error (2)                   | Boolean           | no       | false                                                                 |
+| color (3)                   | String (hex)      | no       | dodgerblue                                                            |
+| button-color (4)            | String (hex)      | no       | #00C853                                                               |
+| position                    | String            | no       | null                                                                  |
+| locale (5)                  | String            | no       | [Browser Locale](https://github.com/moment/moment/tree/develop/locale) |
+| persistent                  | Boolean           | no       | false                                                                 |
+| minute-interval             | Integer           | no       | 1                                                                     |
+| second-interval             | Integer           | no       | 1                                                                     |
+| output-format               | String            | no       | null                                                                  |
+| only-time                   | Boolean           | no       | false                                                                 |
+| only-date                   | Boolean           | no       | false                                                                 |
+| no-label                    | Boolean           | no       | false                                                                 |
+| no-header                   | Boolean           | no       | false                                                                 |
+| no-value-to-custom-elem (6) | Boolean           | no       | false                                                                 |
+| min-date (7)                | String            | no       | -                                                                     |
+| max-date (7)                | String            | no       | -                                                                     |
+| no-weekends-days            | Boolean           | no       | false                                                                 |
+| auto-close                  | Boolean           | no       | false                                                                 |
+| inline                      | Boolean           | no       | false                                                                 |
+| overlay                     | Boolean           | no       | false                                                                 |
+| range                       | Boolean           | no       | false                                                                 |
+| dark                        | Boolean           | no       | false                                                                 |
+| no-shortcuts                | Boolean           | no       | false                                                                 |
+| no-button                   | Boolean           | no       | false                                                                 |
+| input-size                  | String (sm or lg) | no       | null                                                                  |
+| button-now-translation      | String            | no       | 'Now'                                                                 |
+| button-confirm-translation  | String            | no       | '✓'                                                                    |
+| no-button-now               | Boolean           | no       | false                                                                 |
+| first-day-of-week           | Int (0 to 7)      | no       | -                                                                     |
+| disabled-dates (8)          | Array`<string>`   | no       | []                                                                    |
+| disabled-hours (9)          | Array`<string>`   | no       | -                                                                     |
+| shortcut                    | String            | no       | -                                                                     |
+| custom-shortcuts (10)       | Array`<object>`   | no       | -                                                                     |
+| disabled-weekly (11)        | Array`<integer>`  | no       | []                                                                    |
+| no-keyboard (12)            | Boolean           | no       | false                                                                 |
+| right (13)                  | Boolean           | no       | false                                                                 |
+| noClearButton               | Boolean           | no       | false                                                                 |
+| behaviour                   | Object            | no       | [See behaviour](#Behaviour)                                           |
+| id (14)                     | String            | no       | undefined                                                             |
 
 (1) hint : Is a text that replaces the label/placeholder (Ex : Error designation)
 
@@ -245,13 +244,13 @@ To override those values, pass a new object with the values you want to override
 
 # Events API
 
-| Event           | Return                                            |
-| --------------- | ------------------------------------------------- |
-| input           | value (formatted with 'format' props)             |
-| is-shown        | Component is shown                                |
-| is-hidden       | Component is hidden                               |
-| validate        | Click on validate button (so component is closed) |
-| destroy         | Component is destroy                              |
+| Event     | Return                                      |
+|-----------|---------------------------------------------|
+| input     | value (formatted with 'format' props)       |
+| is-shown  | Component is shown                          |
+| is-hidden | Component is hidden                         |
+| ok        | Click on ok button (so component is closed) |
+| destroy   | Component is destroy                        |
 
 # Keyboard Accessible
 

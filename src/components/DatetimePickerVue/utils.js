@@ -4,7 +4,7 @@ export const getDefaultLocale = () => {
   if (typeof window === 'undefined') return null
 
   const { userLanguage, language } = window.navigator
-  const locale = (userLanguage || language || 'en').substr(0, 2)
+  const locale = (userLanguage || language || 'en').toLowerCase()
   moment.locale(locale)
   return locale
 }

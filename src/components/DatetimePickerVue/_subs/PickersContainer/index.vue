@@ -78,15 +78,17 @@
         </div>
         <ButtonValidate
           v-if="!hasNoButton && !(inline && range)"
-          class="button-validate flex-fixed"
+          class="button-ok flex-fixed"
+          :disabled-now="disabledNow"
           :dark="dark"
           :button-color="buttonColor"
           :button-now-translation="buttonNowTranslation"
+          :button-confirm-translation="buttonConfirmTranslation"
           :only-time="onlyTime"
           :no-button-now="noButtonNow"
           :range="range"
-          :has-button-validate="hasButtonValidate"
-          @validate="$emit('validate')"
+          :has-button-ok="hasButtonOk"
+          @ok="$emit('ok')"
           @now="setNow"
         />
       </div>
@@ -126,7 +128,7 @@
       locale: { type: String, default: null },
       maxDate: { type: String, default: null },
       minDate: { type: String, default: null },
-      hasButtonValidate: { type: Boolean, default: null },
+      hasButtonOk: { type: Boolean, default: null },
       hasNoButton: { type: Boolean, default: null },
       noWeekendsDays: { type: Boolean, default: null },
       disabledWeekly: { type: Array, default: null },
@@ -137,6 +139,7 @@
       noShortcuts: { type: Boolean, default: null },
       buttonColor: { type: String, default: null },
       buttonNowTranslation: { type: String, default: null },
+      buttonConfirmTranslation: { type: String, default: null },
       noButtonNow: { type: Boolean, default: false },
       firstDayOfWeek: { type: Number, default: null },
       shortcut: { type: String, default: null },
@@ -185,11 +188,6 @@
           ? this.format
           : this.onlyDate ? null : this.getTimeFormat()
       },
-      dateFormat () {
-        return this.onlyTime
-          ? null
-          : this.getDateFormat()
-      },
       height () {
         return !this.onlyTime
           ? this.month
@@ -206,7 +204,7 @@
         },
         get () {
           return this.value
-            ? moment(this.value, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss')
+            ? moment(this.value, this.format).format('HH:mm:ss')
             : null
         }
       },
@@ -224,7 +222,7 @@
               : this.range
                 ? { start: this.value.start ? moment(this.value.start).format('YYYY-MM-DD') : null,
                     end: this.value.end ? moment(this.value.end).format('YYYY-MM-DD') : null }
-                : moment(this.value, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD')
+                : moment(this.value, this.format).format('YYYY-MM-DD')
             : this.range
               ? { start: null, end: null }
               : null
@@ -250,6 +248,11 @@
           return time
         }
         return ''
+      },
+      disabledNow () {
+        // not realtime, and not check disabled date || time || weekly
+        const now = moment()
+        return now.isBefore(this.minDate) || now.isAfter(this.maxDate)
       }
     },
     watch: {
@@ -263,6 +266,7 @@
     },
     methods: {
       setNow (event) {
+        this.$emit('ok')
         this.$emit('input', event)
         this.$emit('close')
       },

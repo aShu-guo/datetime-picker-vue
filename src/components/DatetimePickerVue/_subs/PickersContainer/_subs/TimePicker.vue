@@ -155,11 +155,11 @@
         )
       },
       minutes () {
-        const twoDigit = this.format.includes('mm') || this.format.includes('m')
+        const twoDigit = this.format.includes('mm')
         return ArrayMinuteRange(0, 60, twoDigit, this.minuteInterval, this._disabledMinutes)
       },
       seconds () {
-        const twoDigit = this.format.includes('ss') || this.format.includes('s')
+        const twoDigit = this.format.includes('ss')
         return ArraySecondRange(0, 60, twoDigit, this.secondInterval, this._disabledSeconds)
       },
       apms () {
@@ -170,12 +170,29 @@
           : null
       },
       columns () {
-        return [
-          { type: 'hours', items: this.hours },
-          { type: 'minutes', items: this.minutes },
-          { type: 'seconds', items: this.seconds },
-          ...(this.apms ? [{ type: 'apms', items: this.apms }] : [])
-        ]
+        const arr = []
+        if (this.format.includes('H') ||
+          this.format.includes('h') ||
+          this.format.includes('HH') ||
+          this.format.includes('hh')) {
+          arr.push({ type: 'hours', items: this.hours })
+        }
+
+        if (this.format.includes('m') || this.format.includes('mm')) {
+          arr.push({ type: 'minutes', items: this.minutes })
+        }
+
+        if (this.format.includes('s') || this.format.includes('ss')) {
+          arr.push({ type: 'seconds', items: this.seconds })
+        }
+
+        if (this.isTwelveFormat &&
+          (this.format.includes('A') || this.format.includes('a')) &&
+          this.apms) {
+          arr.push({ type: 'apms', items: this.apms })
+        }
+
+        return arr
       },
       _disabledHours () {
         let minEnabledHour = 0
@@ -214,7 +231,6 @@
             .filter(h => !enabledHours.includes(h))
             .map(h => h < 10 ? '0' + h : '' + h)
           this.disabledHours.forEach(h => _disabledHours.push(h))
-
           return _disabledHours
         } else {
           return this.disabledHours
@@ -275,7 +291,6 @@
             this.second = enabledSeconds[0] // eslint-disable-line
             this.emitValue()
           }
-
           return [...Array(60)]
             .map((_, i) => i)
             .filter(m => !enabledSeconds.includes(m))
@@ -420,7 +435,8 @@
 
         await this.$nextTick()
         containers.forEach((container) => {
-          const elem = this.$refs[container][0]
+          const ref = this.$refs[container]
+          const elem = ref && ref[0]
           if (!elem) return false
 
           elem.scrollTop = 0

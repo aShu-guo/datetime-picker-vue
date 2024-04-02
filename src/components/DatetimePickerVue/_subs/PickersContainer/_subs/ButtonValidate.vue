@@ -6,12 +6,13 @@
     <button
       v-if="hasButtonNow"
       class="datepicker-button now flex align-center justify-content-center"
-      :class="{'right-margin': hasButtonValidate}"
+      :class="{'right-margin': hasButtonOk, 'disabled': disabledNow }"
       tabindex="-1"
       type="button"
       @click="emitNow()"
     >
       <span
+        v-if="!disabledNow"
         :style="[bgStyle]"
         class="datepicker-button-effect"
       />
@@ -23,17 +24,25 @@
       </span>
     </button>
     <button
-      v-if="hasButtonValidate"
+      v-if="hasButtonOk"
       type="button"
       tabindex="-1"
-      class="datepicker-button validate flex align-center justify-content-center"
-      @click.stop="$emit('validate')"
+      class="datepicker-button ok flex align-center justify-content-center"
+      @click.stop="$emit('ok')"
     >
       <span
         class="datepicker-button-effect"
         :style="[bgStyle]"
       />
+      <span
+        v-if="buttonConfirmTranslation"
+        class="datepicker-button-content"
+        :style="[colorStyle]"
+      >
+        {{ buttonConfirmTranslation }}
+      </span>
       <svg
+        v-else
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -62,10 +71,12 @@
       dark: { type: Boolean, default: null },
       buttonColor: { type: String, default: null },
       buttonNowTranslation: { type: String, default: null },
+      buttonConfirmTranslation: { type: String, default: null },
+      disabledNow: { type: Boolean, default: false },
       onlyTime: { type: Boolean, default: null },
       noButtonNow: { type: Boolean, default: null },
       range: { type: Boolean, default: null },
-      hasButtonValidate: { type: Boolean, default: null }
+      hasButtonOk: { type: Boolean, default: null }
     },
     computed: {
       colorStyle () {
@@ -85,7 +96,9 @@
     },
     methods: {
       emitNow () {
-        this.$emit('now', moment().format('YYYY-MM-DD HH:mm:ss'))
+        if (!this.disabledNow) {
+          this.$emit('now', moment().format('YYYY-MM-DD HH:mm:ss'))
+        }
       }
     }
   }
@@ -146,6 +159,12 @@
           color: #fff !important;
         }
       }
+      &.disabled {
+        pointer-events: none;
+        .datepicker-button-content {
+          color: #CCCCCC !important;
+        }
+      }
       &.now {
         &.right-margin {
           margin-right: 10px;
@@ -157,14 +176,22 @@
           background: dodgerblue;
         }
       }
-      &.validate {
+      &.ok {
         border: 1px solid #eaeaea;
+        .datepicker-button-content {
+          color: dodgerblue;
+        }
       }
     }
     &.is-dark, &.is-dark .datepicker-button {
       background-color: #424242;
       &:not(.now) {
         border-color: lighten(#424242, 20%);
+      }
+      &.disabled{
+        .datepicker-button-content {
+          color: #757575 !important;
+        }
       }
       svg {
         fill: white !important;
